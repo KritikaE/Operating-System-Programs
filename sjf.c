@@ -20,9 +20,8 @@ void main(){
     //sort bt in ascending order
     for(int i =1; i<n-1; i++){
         for(int j = i+1; j<n; j++){
-            int temp = bt[i];
-            bt[i]=bt[j];
-            bt[j]=temp;
+            temp = bt[i]; bt[i] = bt[j]; bt[j] = temp;
+            temp = at[i]; at[i] = at[j]; at[j] = temp;
         }
     }
     
