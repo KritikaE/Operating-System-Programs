@@ -62,3 +62,17 @@ int main() {
 
     return 0;
 }
+
+/* o/p
+
+    Produced: 1
+Produced: 2
+Consumed: 1
+Produced: 3
+Consumed: 2
+Produced: 4
+Consumed: 3
+Produced: 5
+Consumed: 4
+Consumed: 5
+    */
