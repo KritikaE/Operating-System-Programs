@@ -1,39 +1,58 @@
 #include <stdio.h>
 
 int main() {
-    int pages, frames, i;
-    int page_table[10];
-    int page, offset, physical_addr;
+    int n, pt[10];        // number of pages + page table
+    int size;             // page size
+    int la;               // logical address
+    int p, off;           // page number, offset
+    int frame, pa;        // frame number, physical address
 
     printf("Enter number of pages: ");
-    scanf("%d", &pages);
+    scanf("%d", &n);
 
-    printf("Enter frame number for each page:\n");
-    for(i = 0; i < pages; i++) {
-        printf("Page %d -> Frame: ", i);
-        scanf("%d", &page_table[i]);
+    printf("Enter page table (frame numbers):\n");
+    for(int i=0; i<n; i++) {
+        scanf("%d", &pt[i]);
     }
 
-    printf("\nEnter page number: ");
-    scanf("%d", &page);
+    printf("Enter page size: ");
+    scanf("%d", &size);
 
-    printf("Enter offset: ");
-    scanf("%d", &offset);
+    printf("Enter logical address: ");
+    scanf("%d", &la);
 
-    physical_addr = page_table[page] * 100 + offset;
+    // Step 1: break logical address
+    p = la / size;
+    off = la % size;
 
-    printf("Physical Address = %d\n", physical_addr);
+    // Step 2: check valid page
+    if(p >= n) {
+        printf("Invalid page");
+    } else {
+        // Step 3: get frame
+        frame = pt[p];
+
+        // Step 4: calculate physical address
+        pa = frame * size + off;
+
+        printf("Page = %d\n", p);
+        printf("Offset = %d\n", off);
+        printf("Frame = %d\n", frame);
+        printf("Physical Address = %d\n", pa);
+    }
 
     return 0;
 }
 
 /* o/p:
 Enter number of pages: 3
-Page 0 -> Frame: 5
-Page 1 -> Frame: 2
-Page 2 -> Frame: 7
+Enter page table (frame numbers):
+5 2 7
+Enter page size: 100
+Enter logical address: 220
 
-Enter page number: 1
-Enter offset: 20
-
-Physical Address = 220*/
+Page = 2
+Offset = 20
+Frame = 7
+Physical Address = 720
+    */
