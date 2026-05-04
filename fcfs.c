@@ -16,7 +16,7 @@ void main(){
     ct[0]=at[0]+bt[0];
     
     for(int i=1; i<n; i++){
-        if(at[i]>ct[i-0])
+        if(at[i]>ct[i-1])
             ct[i]=at[i]+bt[i];
         else
             ct[i]=ct[i-1]+bt[i];
